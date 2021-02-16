@@ -140,7 +140,15 @@ const MatchRow = ({ matchEdge, onSendIcebreaker }) => {
           Icebreaker
         </Button>
       </TableCell>
-      <TableCell>{matchEdge.match.user.displayname}</TableCell>
+      <TableCell>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href={`https://www.okcupid.com/profile/${matchEdge.match.user.id}`}
+        >
+          {matchEdge.match.user.displayname}
+        </a>
+      </TableCell>
       <TableCell>{`${formatDate(matchEdge.match.senderLikeTime)}`}</TableCell>
     </TableRow>
   );
