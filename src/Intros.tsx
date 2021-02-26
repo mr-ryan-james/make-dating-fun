@@ -164,6 +164,7 @@ export default function Intros() {
         <TableBody>
           {likes
             .slice()
+            .filter((x) => x.__typename === "Match")
             .sort((a, b) => b.targetMessageTime - a.targetMessageTime)
             .map((like) => (
               <IntroRow key={like.user.id} like={like} />
