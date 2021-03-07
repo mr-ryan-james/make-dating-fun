@@ -154,7 +154,7 @@ const MatchRow = ({ matchEdge, onSendIcebreaker }) => {
   );
 };
 
-function sendIceBreaker(user) {
+async function sendIceBreaker(refetch, user) {
   const messageObj = {
     service: "other",
     source: "desktop_global",
@@ -162,13 +162,19 @@ function sendIceBreaker(user) {
     receiverid: user.id,
   };
 
-  console.log();
+  await fetch('http://localhost:3001/api/icebreaker', {
+    method: 'post',
+    body: JSON.stringify(messageObj),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+  })
+
+  refetch()
 }
 
 export default function Matches() {
   const classes = useStyles();
 
-  const { loading, error, data } = useQuery(MATCHES, {
+  const { loading, error, data, refetch } = useQuery(MATCHES, {
     variables: {
       userid: "10861555661426865863",
       filter: "ALL",
@@ -204,7 +210,7 @@ export default function Matches() {
             .sort((a, b) => b.match.senderLikeTime - a.match.senderLikeTime)
             .map((matchEdge) => (
               <MatchRow
-                onSendIcebreaker={sendIceBreaker}
+                onSendIcebreaker={sendIceBreaker.bind(null, refetch)}
                 key={matchEdge.match.user.id}
                 matchEdge={matchEdge}
               />

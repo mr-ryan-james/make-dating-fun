@@ -147,7 +147,7 @@ const MessageRow = ({ message }) => {
 export default function Messages() {
   const classes = useStyles();
 
-  const { loading, error, data } = useQuery(MESSAGES, {
+  const { loading, error, data, refetch } = useQuery(MESSAGES, {
     variables: {
       userid: "10861555661426865863",
       filter: "ALL",
