@@ -22,6 +22,7 @@ import { mainListItems, secondaryListItems } from "./ListItems";
 import Matches from "./Matches";
 import Messages from "./Messages";
 import Intros from "./Intros";
+import Likes from "./Likes";
 
 function Copyright() {
   return (
@@ -186,6 +187,9 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <Likes />
+              </Paper>
               <Paper className={classes.paper}>
                 <Matches />
               </Paper>
